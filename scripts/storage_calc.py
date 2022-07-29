@@ -170,7 +170,7 @@ def get_csv_writer(solution_name, multi_year):
 
 
 def write_header(csv_writer):
-    title = ["Epochs per day", "Storage size required"]
+    title = ["Years", "Epochs", "Storage(GB)"]
     csv_writer.writerow(title)
 
 
