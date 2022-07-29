@@ -61,6 +61,10 @@ def plot_results(
     plt.ylabel(y_axis_label, fontweight="bold")
     plt.xticks(weight="bold")
     plt.yticks(weight="bold")
+    ax = plt.gca()
+    ax.set_xlim(x_seemless[0], x_seemless[-1])
+    plt.xticks(x_seemless, weight="bold")
+    plt.yticks(y_seemless + [y_parakeet[-1]], weight="bold")
     plt.grid()
     plt.savefig(plot_name, bbox_inches="tight")
 
