@@ -268,7 +268,7 @@ def main():
     storage_one_year_varying_epochs(SEEMLESS, seemless_csv_writer)
     storage_one_year_varying_epochs(PARAKEET, parakeet_csv_writer)
 
-    # Calcualte and log storage costs over multiple years.
+    # Calculate and log storage costs over multiple years.
     seemless_csv_writer = get_csv_writer(SEEMLESS, True)
     parakeet_csv_writer = get_csv_writer(PARAKEET, True)
     storage_over_multiple_years(SEEMLESS, seemless_csv_writer)
@@ -277,85 +277,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# # Vary the number of epochs per day over a year
-# file_seemless_one_yr = open("./simulated_storage/seemless_one_year.csv", "w")
-# writer_seemless_one_yr = csv.writer(file_seemless_one_yr)
-
-
-# for num_epochs in num_epochs_per_day:
-#     print("**********************************")
-#     print(
-#         "SEEMless storage for "
-#         + str(epochs)
-#         + " ep/day over a year, with 10M/day keys inserted"
-#     )
-#     storage_needed = calculate_seemless_storage(
-#         NUM_STARTING_KEYS, 366 * num_epochs, NUM_DAILY_NEW_KEYS / epochs, NUM_DAILY_UPDATED_KEYS / epochs, 64.0
-#     )
-#     writer_seemless_one_yr.writerow([num_epochs, storage_needed])
-# file_seemless_one_yr.close()
-
-
-# file_seemless_mult_yr = open("./simulated_storage/seemless_one_year.csv", "w")
-# writer_seemless_mult_yr = csv.writer(file_seemless_mult_yr)
-# title = ["Number of years", "Storage size required"]
-# for years in number_of_years:
-#     print("**********************************")
-#     print(
-#         "SEEMless storage for "
-#         + str(24 * 6)
-#         + " ep/day over"
-#         + str(years)
-#         + " years, with 10M/day keys inserted"
-#     )
-#     storage_needed = calculate_seemless_storage(
-#         NUM_STARTING_KEYS, years * 366 * 24 * 6, 10000000.0 / (24 * 6), 64.0
-#     )
-#     writer_seemless_mult_yr.writerow([years, storage_needed])
-# file_seemless_mult_yr.close()
-
-
-# print("**********************************")
-# print("**********************************")
-# print("**********************************")
-# print("**********************************")
-
-# # These should give storage data for parakeet with 10M insertions per day for a year,
-# # starting state is 2B keys.
-# # Vary the number of epochs per day over a year
-# file_parakeet_one_yr = open("./simulated_storage/parakeet_one_year.csv", "w")
-# writer_parakeet_one_yr = csv.writer(file_parakeet_one_yr)
-# title = ["Epochs per day", "Storage size required"]
-# writer_parakeet_one_yr.writerow(title)
-# for epochs in epochs_per_day:
-#     print("**********************************")
-#     print(
-#         "Parakeet storage for "
-#         + str(epochs)
-#         + " ep/day over a year, with 10M/day keys inserted"
-#     )
-#     calculate_parakeet_storage(2000000000, 366 * epochs, NUM_DAILY_NEW_KEYS / epochs, NUM_DAILY_UPDATED_KEYS / epochs, 64.0)
-#     writer_parakeet_one_yr.writerow([epochs, storage_needed])
-# file_parakeet_one_yr.close()
-
-
-# file_parakeet_mult_yr = open("./simulated_storage/seemless_one_year.csv", "w")
-# writer_parakeet_mult_yr = csv.writer(file_parakeet_mult_yr)
-# title = ["Number of years", "Storage size required"]
-# writer_parakeet_mult_yr.writerow(title)
-# for years in number_of_years:
-#     print("**********************************")
-#     print(
-#         "Parakeet storage for "
-#         + str(24 * 6)
-#         + " ep/day over"
-#         + str(years)
-#         + " years, with 10M/day keys inserted"
-#     )
-#     calculate_parakeet_storage(
-#         2000000000, years * 366 * 24 * 6, 10000000.0 / (24 * 6), 64.0
-#     )
-#     writer_parakeet_mult_yr.writerow([epochs, storage_needed])
-# file_parakeet_mult_yr.close()
