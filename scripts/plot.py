@@ -20,23 +20,50 @@ def default_major_formatter(x, pos):
         return f"{x:.0f}"
 
 
-def plot(x_label, x_values, y_label, y_values, y_max=None):
+# Format: Year,Epoch,Storage(GB)
+def get_storage_results(csv_reader):
+    storage_results = []
+    for row in csv_reader:
+        storage_results.append(row[2])
+    return storage_results
+
+
+def plot_one_year_results():
     plt.figure(figsize=(6.4, 2.4))
     markers = cycle(["o", "v", "s", "p", "D", "P"])
 
+    parakeet_csv_reader = get_csv_reader(storage_calc.PARAKEET, False)
+    _parakeet_header = next(parakeet_csv_reader)
+
+    seemless_csv_reader = get_csv_reader(storage_calc.SEEMLESS, False)
+    _seemless_header = next(seemless_csv_reader)
+
+    parakeet_storage = get_storage_results(parakeet_csv_reader)
+    seemless_storage = get_storage_results(seemless_csv_reader)
+
     plt.errorbar(
-        x_values,
-        y_values,
+        parakeet_storage,
+        storage_calc.EPOCHS_PER_DAY,
         label="Test",
         linestyle="dotted",
         marker=next(markers),
         capsize=3,
     )
+
+    plt.errorbar(
+        seemless_storage,
+        storage_calc.EPOCHS_PER_DAY,
+        label="Test",
+        linestyle="dotted",
+        marker=next(markers),
+        capsize=3,
+    )
+
     plt.legend(loc="upper center", bbox_to_anchor=(0.5, 1), ncol=2)
     plt.xlim(xmin=0)
-    plt.ylim(bottom=0, top=y_max)
-    plt.xlabel(x_label, fontweight="bold")
-    plt.ylabel(y_label, fontweight="bold")
+    plt.ylim(bottom=0, top=None)
+    plt.xlabel("Number of epochs per day", fontweight="bold")
+    plt.ylabel("Storage (GB)", fontweight="bold")
     plt.xticks(weight="bold")
     plt.yticks(weight="bold")
     plt.grid()
@@ -46,20 +73,9 @@ def plot(x_label, x_values, y_label, y_values, y_max=None):
     plt.savefig("test_plot.pdf", bbox_inches="tight")
 
 
-def plot_results(solution_name):
-    csv_reader = get_csv_reader(solution_name, True)
-    header = next(csv_reader)
-    plot(
-        x_label="Number of epochs per day",
-        x_values=storage_calc.EPOCHS_PER_DAY,
-        y_label="Storage(GB)",
-        y_values=[5, 10, 100, 1000],
-    )
-
-
 def main():
-    plot_results(storage_calc.SEEMLESS)
-    plot_results(storage_calc.PARAKEET)
+    plot_one_year_results()
+    # plot_multi_year_results()
 
 
 if __name__ == "__main__":
