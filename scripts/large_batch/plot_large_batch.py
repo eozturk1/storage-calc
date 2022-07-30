@@ -29,7 +29,7 @@ plt.errorbar(
 plt.errorbar(
     keys,
     history,
-    label="History",
+    label="Merkle Tree Data",
     linestyle="dotted",
     marker=next(markers),
     capsize=3,
@@ -38,7 +38,7 @@ plt.errorbar(
 plt.errorbar(
     keys,
     users,
-    label="Users",
+    label="User Data",
     linestyle="dotted",
     marker=next(markers),
     capsize=3,
@@ -47,7 +47,7 @@ plt.errorbar(
 plt.errorbar(
     keys,
     ozks,
-    label="Ozks",
+    label="Tree Metadata",
     linestyle="dotted",
     marker=next(markers),
     capsize=3,
