@@ -3,7 +3,7 @@ from itertools import cycle
 import matplotlib.pyplot as plt
 import pandas as pd
 
-df = pd.read_csv("ozks_memory_long.csv", sep=",", header=None)
+df = pd.read_csv("ozks_memory_longer.csv", sep=",", header=None)
 values = df.values
 
 keys = [int((int(ks) / 100_000)) for ks in values[:, 0]]
@@ -66,4 +66,4 @@ plt.yticks(weight="bold")
 # plt.xticks(x_seemless, weight="bold")
 # plt.yticks(y_seemless + [y_parakeet[-1]], weight="bold")
 plt.grid()
-plt.savefig("ozks_memory_long.pdf", bbox_inches="tight")
+plt.savefig("ozks_memory_longer.pdf", bbox_inches="tight")
